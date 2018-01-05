@@ -7,8 +7,9 @@ module.exports = mongoose.model('User', {
 		name : {
 			type : String, default: ''
 		},
-		dates: [
-			Date
-		]
+		dates: [{
+			date: Date,
+			isLate: Boolean
+		}]
 	}
 );
