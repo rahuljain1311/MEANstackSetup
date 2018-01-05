@@ -1,19 +1,19 @@
-var Nerd = require('./models/nerd');
+var User = require('./models/user');
 
 module.exports = function(app) {
 
 	// server routes ===========================================================
 	// sample api route
-	app.get('/api/nerds', function(req, res) {
-		// use mongoose to get all nerds in the database
+	app.get('/api/users', function(req, res) {
+		// use mongoose to get all users in the database
 
-		Nerd.find(function(err, nerds) {
+		User.find(function(err, users) {
 
 			// if there is an error retrieving, send the error. 
 			// nothing after res.send(err) will execute
 			if (err)
 				res.send(err);
-			res.json(nerds); // return all nerds in JSON format
+			res.json(users); // return all users in JSON format
 		});
 	});
 
