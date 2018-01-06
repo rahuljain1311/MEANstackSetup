@@ -1,6 +1,7 @@
 <div class="jumbotron text-center">
 	<h1>Add or Remove users here</h1>
-	<p></p>
+	<br />
+	<br />
 	<ol class="text-left">
 		<li ng-repeat="name in names"> {{name}} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 			<button ng-click="deleteUser(name._id)" >Delete me</button>
@@ -8,8 +9,11 @@
 		
 		<p></p>
 	</ol>
+	<br />
+	<br />
 	
 	<input class="form-control" ng-model="user.name">  <button ng-click="addUser()" >Add a user</button>
-	
+	<br />
+	<br />
 	<p>{{ tagline }}</p>
 </div>
