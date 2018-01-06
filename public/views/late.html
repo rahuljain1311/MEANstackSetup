@@ -1,9 +1,22 @@
 <div class="jumbotron text-center">
 	<h1>Mark Users Late here</h1>
 	<br />
-	<span ng-bind = "date"></span>
+	<div>
+		{{date | date:'dd-MM-yyyy'}}
+	</div>
 	<br />
 	<br />
+	<br />
+	<p> Choose Date ?&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <input type="date" ng-model="userdate">  </p> 
+	<br />
+	<br />
+	<ol class="text-left">
+		<li ng-repeat="name in names"> {{name}} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+			<button ng-click="markLate(name._id)" >Mark me late</button> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+			<button ng-click="markEarly(name._id)" >On Time</button>
+		</li>
+		<br />
+	</ol>
 	<br />
 	<br />
 	<p>{{ tagline }}</p>

@@ -1,6 +1,7 @@
 const User = require('./models/user');
 const _ = require('lodash')
 const Promise = require('bluebird');
+const Moment = require('moment');
 
 const getAllUsers = () => {
 
@@ -25,13 +26,11 @@ module.exports = function(app) {
 
 		return getAllUsers().then((names) => {
 
-			console.log('Get users = ', names);
 			return res.json(names);
 		});
 	});
 
 	app.post('/api/user/:userName', function(req, res) {
-		// use mongoose to get all users in the database
 
 		var user = new User({
 			name: req.params.userName,
@@ -43,14 +42,12 @@ module.exports = function(app) {
 			res.send(err);
 			return getAllUsers().then((users) => {
 				
-				console.log('Post users = ', users);
 				return res.json(users);
 			});
 		  });
 	});
 
 	app.delete('/api/user/:userId', function(req, res) {
-		// use mongoose to get all users in the database
 
 		User.remove({_id: req.params.userId}, function (err) {
 
@@ -59,20 +56,32 @@ module.exports = function(app) {
 				res.send(err);
 			return getAllUsers().then((users) => {
 			
-				console.log('Delete users = ', users);
 				return res.json(users);
 			});
 		});
 	});
 
+	// Be called from Late Controller, used to mark users late
+	app.put('/api/user/:userId', function(req, res) {
 
-	// // Be called from Late Controller, used to mark users late
-	// app.update('/api/user/:userId', function(req, res) {
+		// Here we will push a record into Dates [] of user
+		return User.find({ '_id': req.params.userId }, function(request, users) {
 
-	// 	// Here we will push a record into Dates [] of user
+			console.log('request object  = ', req.body);			
+			users[0].dates.push({
+				date: Moment(req.body.date).format('MMM D, YYYY'),
+				isLate: req.body.isLate
+			});
+			const updatedUser = users[0];		
+			return User.update({ '_id': req.params.userId }, updatedUser, function (updateRequest, updateReponse){
 
-		
-	// });
+				return getAllUsers().then((users) => {
+
+					return res.json(users);
+				});
+			});
+		});
+	});
 
 	// frontend routes =========================================================
 	// route to handle all angular requests

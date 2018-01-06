@@ -1,12 +1,18 @@
 {
   "name": "starter-node-angular",
-  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
   "dependencies": {
     "bluebird": "^3.5.1",
     "body-parser": "~1.4.2",
     "express": "~4.5.1",
     "lodash": "^4.17.4",
     "method-override": "~2.0.2",
+    "moment": "^2.20.1",
     "mongoose": "~4.4"
+  },
+  "devDependencies": {
+    "nodemon": "^1.14.7"
   }
 }
