@@ -30,11 +30,11 @@ module.exports = function(app) {
 		});
 	});
 
-	app.post('/api/users', function(req, res) {
+	app.post('/api/user/:userName', function(req, res) {
 		// use mongoose to get all users in the database
 
 		var user = new User({
-			name: req.name,
+			name: req.params.userName,
 			dates: []
 		  });
 		  user.save(function (err, results) {

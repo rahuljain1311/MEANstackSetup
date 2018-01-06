@@ -8,5 +8,15 @@ angular.module('UserCtrl', []).controller('UserController', function($scope, $ht
 		.then(function(response){ $scope.names = response.data; });
 	}
 
+	$scope.addUser = function () {
+		
+		const name = $scope.user.name;
+		return $http.post('/api/user/'+ name)
+		.then(function(response){ 
+			$scope.names = response.data; 
+			$scope.user.name = '';
+		});
+	}
+
 	$http.get('/api/users').then(function(response){ $scope.names = response.data; });
 });
