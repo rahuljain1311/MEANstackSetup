@@ -1,14 +1,20 @@
-var User = require('./models/user');
+const User = require('./models/user');
+const _ = require('lodash')
+const Promise = require('bluebird');
 
 const getAllUsers = () => {
 
-	User.find(function(err, users) {
+	console.log('users start11 = ');
+	return new Promise((resolve) => {
+		User.find(function(err, users) {
 
-		// if there is an error retrieving, send the error. 
-		// nothing after res.send(err) will execute
-		if (err)
-			return err;
-		return users; // return all users in JSON format
+			// if there is an error retrieving, send the error. 
+			// nothing after res.send(err) will execute
+			if (err)
+				return err;
+			const names = _.map(users, 'name');
+			return resolve(names);
+		});
 	});
 }
 
@@ -18,7 +24,11 @@ module.exports = function(app) {
 
 	app.get('/api/users', function(req, res) {
 
-		return res.json(getAllUsers);
+		return getAllUsers().then((names) => {
+
+			console.log('Get users = ', names);
+			return res.json(names);
+		});
 	});
 
 	app.post('/api/users', function(req, res) {
@@ -29,7 +39,14 @@ module.exports = function(app) {
 			dates: []
 		  });
 		  user.save(function (err, results) {
-			return res.json(getAllUsers);
+			
+			if (err)
+			res.send(err);
+			return getAllUsers().then((users) => {
+				
+				console.log('Post users = ', users);
+				return res.json(users);
+			});
 		  });
 	});
 
@@ -41,7 +58,11 @@ module.exports = function(app) {
 			// if there is an error deleting, send the error. 
 			if (err)
 				res.send(err);
-			return res.json(getAllUsers);
+			return getAllUsers().then((users) => {
+			
+				console.log('Delete users = ', users);
+				return res.json(users);
+			});
 		});
 	});
 

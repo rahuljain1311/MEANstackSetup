@@ -2,5 +2,5 @@ angular.module('UserCtrl', []).controller('UserController', function($scope, $ht
 
 	$scope.tagline = 'To the moon and back!';	
 	return $http.get('/api/users')
-	.then(function(response){ $scope.line = response; });
+	.then(function(response){ $scope.names = response.data; });
 });

@@ -2,9 +2,11 @@
   "name": "starter-node-angular",
   "main": "server.js",
   "dependencies": {
-    "express": "~4.5.1",
-    "mongoose": "~4.4",
+    "bluebird": "^3.5.1",
     "body-parser": "~1.4.2",
-    "method-override": "~2.0.2"
+    "express": "~4.5.1",
+    "lodash": "^4.17.4",
+    "method-override": "~2.0.2",
+    "mongoose": "~4.4"
   }
 }
