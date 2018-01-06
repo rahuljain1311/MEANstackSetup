@@ -2,7 +2,7 @@
   "name": "starter-node-angular",
   "scripts": {
     "start": "nodemon server.js",
-    "prod-start": "pm2 start server.js -i 10"
+    "prod-start": "./node_modules/.bin/pm2 start server.js -i 5"
   },
   "dependencies": {
     "bluebird": "^3.5.1",
@@ -11,7 +11,8 @@
     "lodash": "^4.17.4",
     "method-override": "~2.0.2",
     "moment": "^2.20.1",
-    "mongoose": "~4.4"
+    "mongoose": "~4.4",
+    "pm2": "^2.9.1"
   },
   "devDependencies": {
     "nodemon": "^1.14.7"
