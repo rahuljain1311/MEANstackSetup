@@ -2,7 +2,7 @@
   "name": "starter-node-angular",
   "scripts": {
     "start": "nodemon server.js",
-    "prod-start": "./node_modules/.bin/pm2 start server.js -i 5"
+    "prod-start": "./node_modules/.bin/pm2 start server.js"
   },
   "dependencies": {
     "bluebird": "^3.5.1",
