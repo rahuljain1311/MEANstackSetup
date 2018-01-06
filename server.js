@@ -4,9 +4,12 @@ var app            = express();
 var mongoose       = require('mongoose');
 var bodyParser     = require('body-parser');
 var methodOverride = require('method-override');
+var morgan = require('morgan')
 
 // configuration ===========================================
-	
+    
+app.use(morgan('combined'))
+
 // config files
 var db = require('./config/db');
 
