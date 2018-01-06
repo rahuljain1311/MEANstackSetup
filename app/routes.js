@@ -4,7 +4,6 @@ const Promise = require('bluebird');
 
 const getAllUsers = () => {
 
-	console.log('users start11 = ');
 	return new Promise((resolve) => {
 		User.find(function(err, users) {
 
@@ -12,7 +11,7 @@ const getAllUsers = () => {
 			// nothing after res.send(err) will execute
 			if (err)
 				return err;
-			const names = _.map(users, 'name');
+			const names =  _.map(users, function(obj) {return _.pick(obj, ['_id', 'name'])})
 			return resolve(names);
 		});
 	});
@@ -53,7 +52,7 @@ module.exports = function(app) {
 	app.delete('/api/user/:userId', function(req, res) {
 		// use mongoose to get all users in the database
 
-		User.remove({_id: req.params.id}, function (err) {
+		User.remove({_id: req.params.userId}, function (err) {
 
 			// if there is an error deleting, send the error. 
 			if (err)

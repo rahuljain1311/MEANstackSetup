@@ -1,10 +1,12 @@
 <div class="jumbotron text-center">
 	<h1>Add or Remove users here</h1>
 	<p></p>
-	<p></p>
-	<p></p>
 	<ol class="text-left">
-        <li ng-repeat="name in names"><a href="#"></a>{{name}}</a></li>
+		<li ng-repeat="name in names"> {{name}} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+			<button ng-click="deleteUser(name._id)" >Delete me</button>
+		</li>
+		
+		<p></p>
     </ol>
 	
 	<p>{{ tagline }}</p>
