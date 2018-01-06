@@ -83,6 +83,37 @@ module.exports = function(app) {
 		});
 	});
 
+	const isValid = (days, date) => { 
+		const lateDateMoment = Moment(date); 
+		const limitDateMoment = Moment().subtract(days, 'days'); 
+		if(Moment.duration(lateDateMoment.diff(limitDateMoment)) > 0)
+			return 1; 
+		else return 0; 
+	}
+
+	app.get('/api/lateCount/:days/:userId', function(req, res) {
+
+		return User.find({ '_id': req.params.userId }, function(request, users){
+
+			const dates = users[0].dates;
+			var noOfDays = 0;
+			var lateCount = 0;
+			_.forEach(dates, (obj) => {
+				if(isValid(req.params.days, obj.date)) { 
+					noOfDays++; 
+					if(obj.isLate)
+					lateCount++;
+				}
+			})
+			console.log(JSON.stringify(dates));
+			return res.json({
+				noOfDays: noOfDays,
+				lateCount: lateCount
+			})
+		});
+	});
+
+
 	// frontend routes =========================================================
 	// route to handle all angular requests
 	app.get('*', function(req, res) {

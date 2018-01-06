@@ -1,5 +1,23 @@
 <div class="jumbotron text-center">
 	<h1>Weekly and Monthly late counts</h1>
-
+	<br />
+	<br />
+	<p class="text-right">
+		Number of days recorded: {{noOfDays || 0}} <br/>
+		Late count: {{lateCount || 0}}
+	</p>
+	<br />
+	<br />
+	<ol class="text-left">
+		<li ng-repeat="name in names"> {{name}} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+			<button ng-click="weekLateCount(name._id)" >get last week late counts</button> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+			<button ng-click="monthLateCount(name._id)" >get last month late counts</button>
+		</li>
+		
+		<br />
+	</ol>
+	<br />
+	<br />
+	<p class="text-right"><small>Month is taken by default to be of 30 days.</small></p>
 	<p>{{ tagline }}</p>
 </div>
