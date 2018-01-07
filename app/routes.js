@@ -85,8 +85,9 @@ module.exports = function(app) {
 
 	const isValid = (days, date) => { 
 		const lateDateMoment = Moment(date); 
+		const curDate = Moment();
 		const limitDateMoment = Moment().subtract(days, 'days'); 
-		if(Moment.duration(lateDateMoment.diff(limitDateMoment)) > 0)
+		if(Moment.duration(lateDateMoment.diff(limitDateMoment)) > 0 && Moment.duration(curDate.diff(lateDateMoment)) >= 0)
 			return 1; 
 		else return 0; 
 	}
