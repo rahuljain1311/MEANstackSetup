@@ -4,10 +4,12 @@ This is a repo for a starter appliation for a Single Page MEAN Stack application
 
 ## Installation
 1. Download the repository
-2. Install npm modules: `npm install`
-3. Install bower dependencies `bower install`
-4. Start up the server: `node server.js`
-5. View in browser at http://localhost:8080
+2. Do `nvm install v6.11.2`
+3. Do `nvm use v6.11.2`
+4. Install npm modules: `npm install`
+5. Install bower dependencies `bower install`
+6. Start up the server: `node server.js`
+7. View in browser at http://localhost:8080
 
 Use this starter kit to build any MEAN stack application you like.
 
